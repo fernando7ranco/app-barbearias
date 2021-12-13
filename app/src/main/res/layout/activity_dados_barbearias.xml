@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:stretchColumns="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/nomeBarbearia"
+                        android:layout_width="match_parent"
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="nome"
+                        android:textColor="@color/black"
+                        android:textSize="22dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/descricaoBarbearia"
+                        android:layout_width="380dp"
+                        android:layout_column="1"
+                        android:listSelector="@android:color/transparent"
+                        android:padding="6dip"
+                        android:text="Descrição"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/enderecoCompletoBarbearia"
+                        android:layout_width="368dp"
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="Endereco"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/whatsappBarbearia"
+                        android:layout_width="368dp"
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="Whatsapp"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="Horarios de atendimento:"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ListView
+                        android:id="@+id/horariosBarbearias"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:textSize="16dp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="Barbeiros:"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ExpandableListView
+                        android:id="@+id/barbeirosBarbearia"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1" />
+
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

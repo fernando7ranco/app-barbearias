@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FormDadosBarbeariaActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp"
+            android:layout_margin="10dp" >
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="deslogarUsuario"
+                android:text="Deslogar da conta" />
+
+            <EditText
+                android:id="@+id/nomeBarbeariaCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite nome da barbearia"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/descricaoBarbeariaCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:inputType="text|textMultiLine"
+                android:hint="Digite a descrição sobre a barbearia"
+                android:gravity="top"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nomeBarbeariaCadastro" />
+
+            <EditText
+                android:id="@+id/enderecoBarbeariaCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite o endereço da barbearia"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descricaoBarbeariaCadastro" />
+
+            <EditText
+                android:id="@+id/numeroBarbeariaCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Digite o numero da barbearia"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enderecoBarbeariaCadastro" />
+
+            <EditText
+                android:id="@+id/bairroBarbeariaCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite o bairro da barbearia"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numeroBarbeariaCadastro" />
+
+            <EditText
+                android:id="@+id/whatsappBarbeariaCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite o whatsapp da barbearia"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bairroBarbeariaCadastro" />
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:id="@+id/localHorariosBarbeariaCadastro" >
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Horarios de atendimento durante a semana"
+                   android:textSize="20dp"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginTop="10dp" />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:id="@+id/diasSemanaHoras">
+
+                   <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout1" android:layout_height="wrap_content">
+                       <TextView
+                           android:layout_width="100dp"
+                           android:layout_height="wrap_content"
+                           android:text="Segunda"
+                           android:textSize="20dp"
+                           />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="inicio" />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="fim"
+                           android:layout_marginLeft="10dp"/>
+                   </LinearLayout>
+
+                   <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout2" android:layout_height="wrap_content">
+                       <TextView
+                           android:layout_width="100dp"
+                           android:layout_height="wrap_content"
+                           android:text="Terça"
+                           android:textSize="20dp"
+                           />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="inicio" />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="fim"
+                           android:layout_marginLeft="10dp"/>
+                   </LinearLayout>
+
+                   <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout3" android:layout_height="wrap_content">
+                       <TextView
+                           android:layout_width="100dp"
+                           android:layout_height="wrap_content"
+                           android:text="Quarta"
+                           android:textSize="20dp"
+                           />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="inicio" />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="fim"
+                           android:layout_marginLeft="10dp"/>
+                   </LinearLayout>
+
+                   <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout4" android:layout_height="wrap_content">
+                       <TextView
+                           android:layout_width="100dp"
+                           android:layout_height="wrap_content"
+                           android:text="Quinta"
+                           android:textSize="20dp"
+                           />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="inicio" />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="fim"
+                           android:layout_marginLeft="10dp"/>
+                   </LinearLayout>
+
+                   <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout5" android:layout_height="wrap_content">
+                       <TextView
+                           android:layout_width="100dp"
+                           android:layout_height="wrap_content"
+                           android:text="Sexta"
+                           android:textSize="20dp"
+                           />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="inicio" />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="fim"
+                           android:layout_marginLeft="10dp"/>
+                   </LinearLayout>
+
+                   <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout6" android:layout_height="wrap_content">
+                       <TextView
+                           android:layout_width="100dp"
+                           android:layout_height="wrap_content"
+                           android:text="Sabado"
+                           android:textSize="20dp"
+                           />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="inicio" />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="fim"
+                           android:layout_marginLeft="10dp"/>
+                   </LinearLayout>
+
+                   <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout7" android:layout_height="wrap_content">
+                       <TextView
+                           android:layout_width="100dp"
+                           android:layout_height="wrap_content"
+                           android:text="Domingo"
+                           android:textSize="20dp"
+                           />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="inicio" />
+                       <Button
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="showTimePickerDialog"
+                           android:text="fim"
+                           android:layout_marginLeft="10dp"/>
+                   </LinearLayout>
+               </LinearLayout>
+           </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/localBarbeiroCadastro" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Barbeiros:"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <EditText
+                    android:id="@+id/nomeBarbeiroCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Digite o nome do barbeiro"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/localHorariosBarbeariaCadastro" />
+
+                <EditText
+                    android:id="@+id/whatsappBarbeiroCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Digite o whatsapp do barbeiro"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nomeBarbeiroCadastro" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horarios de atendimento durante a semana"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/diasSemanaHorasBarbeiro">
+
+                    <LinearLayout android:layout_width="fill_parent"  android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Segunda"
+                            android:textSize="20dp"
+                            />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="inicio" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="fim"
+                            android:layout_marginLeft="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Terça"
+                            android:textSize="20dp"
+                            />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="inicio" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="fim"
+                            android:layout_marginLeft="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="fill_parent"  android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Quarta"
+                            android:textSize="20dp"
+                            />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="inicio" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="fim"
+                            android:layout_marginLeft="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="fill_parent"  android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Quinta"
+                            android:textSize="20dp"
+                            />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="inicio" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="fim"
+                            android:layout_marginLeft="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="fill_parent"  android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Sexta"
+                            android:textSize="20dp"
+                            />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="inicio" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="fim"
+                            android:layout_marginLeft="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="fill_parent"  android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Sabado"
+                            android:textSize="20dp"
+                            />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="inicio" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="fim"
+                            android:layout_marginLeft="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="fill_parent"  android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Domingo"
+                            android:textSize="20dp"
+                            />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="inicio" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="showTimePickerDialog"
+                            android:text="fim"
+                            android:layout_marginLeft="10dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="adicionarBarbeiro"
+                    android:layout_marginBottom="60dp"
+                    android:text="Adicionar barbeiro" />
+
+            </LinearLayout>
+
+            <ExpandableListView
+                android:id="@+id/barbeirosBarbeariaCadastro"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="1" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="salvar"
+                android:layout_marginBottom="60dp"
+                android:text="Salvar" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
