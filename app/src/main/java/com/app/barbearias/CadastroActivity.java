@@ -23,6 +23,7 @@ public class CadastroActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
+    private loadingActivity loadingActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,9 @@ public class CadastroActivity extends AppCompatActivity {
             this.auth.addAuthStateListener(authStateListener);
 
             setContentView(R.layout.activity_cadastro);
+
+            this.loadingActivity = new loadingActivity();
+            this.loadingActivity.init(this);
 
             EditText inNome = findViewById(R.id.inNomeCastro);
             EditText inEmail = findViewById(R.id.inEmailCadastro);
@@ -78,12 +82,11 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void cadastrar(String nome, String email, String senha){
-
+        this.loadingActivity.show();
         this.auth.fetchSignInMethodsForEmail(email)
             .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                 @Override
                 public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-
                     boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
 
                     if (isNewUser) {
@@ -106,7 +109,7 @@ public class CadastroActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(CadastroActivity.this, "Ocorreram erros ao criar o usuario. E-mail já cadastrado", Toast.LENGTH_LONG).show();
                     }
-
+                    CadastroActivity.this.loadingActivity.hide();
                 }
             });
     }

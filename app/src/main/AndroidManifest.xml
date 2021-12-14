@@ -11,6 +11,9 @@
         android:theme="@style/Theme.AppBarbearias"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".loadingActivity"
+            android:exported="true" />
+        <activity
             android:name=".FormDadosBarbeariaActivity"
             android:exported="true" />
         <activity

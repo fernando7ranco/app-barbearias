@@ -27,7 +27,7 @@ public class FormDadosBarbeariaActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private String idBarbearia;
     private ArrayList<Barbeiros> listaBarbeiros;
-
+    private loadingActivity loadingActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +52,9 @@ public class FormDadosBarbeariaActivity extends AppCompatActivity {
             this.auth.addAuthStateListener(authStateListener);
 
             setContentView(R.layout.activity_form_dados_barbearia);
+
+            this.loadingActivity = new loadingActivity();
+            this.loadingActivity.init(this);
 
             this.listaBarbeiros = new ArrayList<Barbeiros>();
 
@@ -80,6 +83,7 @@ public class FormDadosBarbeariaActivity extends AppCompatActivity {
     }
 
     public void salvar(View v) {
+        this.loadingActivity.show();
 
         ArrayList<HorariosSemana> HorariosSemana;
 
@@ -126,6 +130,8 @@ public class FormDadosBarbeariaActivity extends AppCompatActivity {
         barbearia.save();
 
         Toast.makeText(this, "Informações salvas", Toast.LENGTH_LONG).show();
+
+        this.loadingActivity.hide();
     }
 
     public void load() {
@@ -141,9 +147,14 @@ public class FormDadosBarbeariaActivity extends AppCompatActivity {
 
         Barbearias barbearia = new Barbearias();
 
+        this.loadingActivity.show();
+
         barbearia.getByIdUser(this.user.getUid(), new Regras() {
             @Override
             public void execute(ArrayList l) {
+
+                FormDadosBarbeariaActivity.this.loadingActivity.hide();
+
                 Barbearias b = (Barbearias)l.get(0);
 
                 FormDadosBarbeariaActivity.this.idBarbearia = b.getId();
@@ -220,55 +231,58 @@ public class FormDadosBarbeariaActivity extends AppCompatActivity {
 
     private void mostrarBarbeiros() {
 
-        ViewGroup.LayoutParams params;
+        if (this.listaBarbeiros.size() > 0) {
 
-        ExpandableListView expandableListView = (ExpandableListView) findViewById(R.id.barbeirosBarbeariaCadastro);
+            ViewGroup.LayoutParams params;
 
-        params = expandableListView.getLayoutParams();
-        params.height = this.listaBarbeiros.size() * 140 ;
-        if (params.height < ( 140 * 7)) {
-            params.height =  140 * 7;
-        }
-        expandableListView.setLayoutParams(params);
-        expandableListView.requestLayout();
+            ExpandableListView expandableListView = (ExpandableListView) findViewById(R.id.barbeirosBarbeariaCadastro);
 
-        expandableListView.setAdapter(new ExpandableAdpter(FormDadosBarbeariaActivity.this, this.listaBarbeiros));
-
-        expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                // TODO Auto-generated method stub
-                String nome = FormDadosBarbeariaActivity.this.listaBarbeiros.get(arg2).getNome();
-
-                AlertDialog.Builder alert = new AlertDialog.Builder(FormDadosBarbeariaActivity.this);
-                alert.setTitle("Excluir barbeiro");
-                alert.setIcon(android.R.drawable.ic_delete);
-                alert.setMessage("Você deseja excluir permanentemente o barbeirp: "+ nome + "?");
-                alert.setNeutralButton("Cancelar", null);
-                alert.setPositiveButton("Sim excluir", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        FormDadosBarbeariaActivity.this.listaBarbeiros.remove(arg2);
-                        FormDadosBarbeariaActivity.this.mostrarBarbeiros();
-                    }
-                });
-                alert.show();
-
-                return false;
+            params = expandableListView.getLayoutParams();
+            params.height = this.listaBarbeiros.size() * 140;
+            if (params.height < (140 * 7)) {
+                params.height = 140 * 7;
             }
-        });
+            expandableListView.setLayoutParams(params);
+            expandableListView.requestLayout();
 
-        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-            int lastGroup = -1;
+            expandableListView.setAdapter(new ExpandableAdpter(FormDadosBarbeariaActivity.this, this.listaBarbeiros));
 
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(FormDadosBarbeariaActivity.this, "Horários do barbeiro(a) : " + FormDadosBarbeariaActivity.this.listaBarbeiros.get(groupPosition).getNome(), Toast.LENGTH_SHORT).show();
-                if (lastGroup > -1 && lastGroup != groupPosition) {
-                    expandableListView.collapseGroup(lastGroup);
+            expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+                public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                    // TODO Auto-generated method stub
+                    String nome = FormDadosBarbeariaActivity.this.listaBarbeiros.get(arg2).getNome();
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(FormDadosBarbeariaActivity.this);
+                    alert.setTitle("Excluir barbeiro");
+                    alert.setIcon(android.R.drawable.ic_delete);
+                    alert.setMessage("Você deseja excluir permanentemente o barbeirp: " + nome + "?");
+                    alert.setNeutralButton("Cancelar", null);
+                    alert.setPositiveButton("Sim excluir", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            FormDadosBarbeariaActivity.this.listaBarbeiros.remove(arg2);
+                            FormDadosBarbeariaActivity.this.mostrarBarbeiros();
+                        }
+                    });
+                    alert.show();
+
+                    return false;
                 }
-                lastGroup = groupPosition;
-            }
-        });
+            });
+
+            expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+                int lastGroup = -1;
+
+                @Override
+                public void onGroupExpand(int groupPosition) {
+                    Toast.makeText(FormDadosBarbeariaActivity.this, "Horários do barbeiro(a) : " + FormDadosBarbeariaActivity.this.listaBarbeiros.get(groupPosition).getNome(), Toast.LENGTH_SHORT).show();
+                    if (lastGroup > -1 && lastGroup != groupPosition) {
+                        expandableListView.collapseGroup(lastGroup);
+                    }
+                    lastGroup = groupPosition;
+                }
+            });
+        }
     }
 }

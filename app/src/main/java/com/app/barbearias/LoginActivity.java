@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
 
+    private loadingActivity loadingActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,9 @@ public class LoginActivity extends AppCompatActivity {
             this.auth.addAuthStateListener(authStateListener);
 
             setContentView(R.layout.activity_login);
+
+            this.loadingActivity = new loadingActivity();
+            this.loadingActivity.init(this);
 
             EditText inEmail = findViewById(R.id.inEmailLogin);
             EditText inSenha = findViewById(R.id.inSenhaLogin);
@@ -80,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (this.validPassword(senha)) {
             Toast.makeText(this, "Por favor informe sua senha com pelos 6 caracteres", Toast.LENGTH_LONG).show();
         } else {
+            LoginActivity.this.loadingActivity.show();
             this.auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -93,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("corretos logins firebase erro:", message);
                         Toast.makeText(LoginActivity.this, "Erro de login de dados. Por favor preencha e-mail e senha corretamente", Toast.LENGTH_LONG).show();
                     }
+                    LoginActivity.this.loadingActivity.hide();
                 }
             });
         }
